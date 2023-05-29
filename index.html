@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/init.css">
+    <link rel="stylesheet" href="style/schede.css">
+    <link rel="stylesheet" href="style/allenamenti.css">
+</head>
+<body>
+    <header id="header">
+        <h1 id="title">Gym App</h1>
+        <h2 id="nomeSchedaHeader"></h2>
+    </header>
+    <main>
+        <div class="container" id="container"></div>
+    </main>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+
+        const container = document.getElementById("container");
+        const header = document.getElementById("header");
+        let data = {};
+
+        fetch("data.json")
+        .then((response) => {
+            return response.json()
+        })
+        .then((obj) => {
+            data = obj;
+            paginaSchede();
+        })
+        .catch((e) => {
+            alert("Error: \n" + e);
+        })
+
+        const titolo = document.getElementById("title");
+        titolo.addEventListener("click", () => {
+            paginaSchede();
+        })
+
+        const nomeSchedaHeader = document.getElementById("nomeSchedaHeader");
+
+        // ---------------- INIZIO PAGINA SCHEDE ----------------
+
+        function paginaSchede() {
+
+            // crea ed inserisce le parti iniziali della pagina delle schede
+
+            window.scrollTo(0,0);
+
+            if(nomeSchedaHeader.hasChildNodes()) {
+                nomeSchedaHeader.firstChild.remove();
+            }
+
+            container.innerHTML = "";
+
+            const bodyGraphContainerSchede = document.createElement("div");
+            bodyGraphContainerSchede.classList.add("bodyGraphContainerSchede");
+            container.appendChild(bodyGraphContainerSchede);
+
+            const headerContainerSchede = document.createElement("div");
+            headerContainerSchede.classList.add("headerContainerSchede");
+            container.appendChild(headerContainerSchede);
+
+            const bodyContainerSchede = document.createElement("div");
+            bodyContainerSchede.classList.add("bodyContainerSchede");
+            container.appendChild(bodyContainerSchede);
+
+            if(data.schede.length > 1) {
+                stampaGrafoSchede(bodyGraphContainerSchede);
+            } else {
+                stampaMessaggioNoData(bodyGraphContainerSchede);
+                stampaMessaggioNoData(bodyContainerSchede);
+            }
+
+            data.schede.forEach((scheda) => {
+
+                // stampa tutte la card delle schede alla creazione della pagina
+
+                stampaCardScheda(scheda, bodyContainerSchede);
+            })
+
+            const searchInputSchede = document.createElement("input");
+            searchInputSchede.classList.add("searchInput");
+            searchInputSchede.setAttribute("placeholder", "search...");
+            searchInputSchede.addEventListener("input", () => {
+
+                bodyContainerSchede.innerHTML = "";
+
+                const inputText = searchInputSchede.value;
+
+                let varBool = false;
+
+                data.schede.forEach((scheda) => {
+                    if(inputText == "" || inputText == scheda.id || inputText == scheda.nome || inputText == scheda.tipologia) {
+
+                        // stampa le card delle schede a seconda dell'input inserito
+
+                        stampaCardScheda(scheda, bodyContainerSchede);
+                        varBool = true;
+                    }
+                })
+
+                if(!varBool) {
+                    stampaMessaggioNoData(bodyContainerSchede);
+                }
+            })
+
+            headerContainerSchede.appendChild(searchInputSchede);
+        }
+
+        function stampaGrafoSchede(bodyGraphContainerSchede) {
+
+            const graphSchede = document.createElement("div");
+            graphSchede.classList.add("graphSchede");
+            bodyGraphContainerSchede.appendChild(graphSchede);
+
+            const insiemeDati = [];
+            data.schede.forEach((scheda) => {
+                insiemeDati.push(
+                    [scheda.nome, new Date(scheda.dataInizio), new Date(scheda.dataFine)]
+                );
+            })
+
+            graphSchede.style.height = (((insiemeDati.length - 1) * 41) + 91) + "px";
+
+            google.charts.load('current', {'packages':['timeline']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var chart = new google.visualization.Timeline(graphSchede);
+                var dataTable = new google.visualization.DataTable();
+
+                dataTable.addColumn({ type: 'string', id: 'Scheda' });
+                dataTable.addColumn({ type: 'date', id: 'Start' });
+                dataTable.addColumn({ type: 'date', id: 'End' });
+
+                dataTable.addRows(insiemeDati);
+
+                chart.draw(dataTable);
+            }
+        }
+
+        function stampaCardScheda(scheda, bodyContainerSchede) {
+
+            // stampa la singola card scheda
+
+            const cardScheda = document.createElement("div");
+            cardScheda.classList.add("cardScheda");
+
+            const nomeScheda = document.createElement("h2");
+            nomeScheda.classList.add("nomeScheda");
+            const nomeSchedaText = document.createTextNode(scheda.nome);
+            nomeScheda.appendChild(nomeSchedaText);
+            cardScheda.appendChild(nomeScheda);
+
+            const tipologiaScheda = document.createElement("h2");
+            tipologiaScheda.classList.add("tipologiaScheda");
+            const tipologiaSchedaText = document.createTextNode(scheda.tipologia);
+            tipologiaScheda.appendChild(tipologiaSchedaText);
+            cardScheda.appendChild(tipologiaScheda);
+
+            const descrizioneScheda = document.createElement("h2");
+            descrizioneScheda.classList.add("descrizioneScheda");
+            const descrizioneSchedaText = document.createTextNode(scheda.descrizione);
+            descrizioneScheda.appendChild(descrizioneSchedaText);
+            cardScheda.appendChild(descrizioneScheda);
+
+            const dataScheda = document.createElement("h2");
+            dataScheda.classList.add("dataScheda");
+            const dataSchedaText = document.createTextNode(scheda.dataInizio + " / " + scheda.dataFine);
+            dataScheda.appendChild(dataSchedaText);
+            cardScheda.appendChild(dataScheda);
+
+            cardScheda.addEventListener("click", () => {
+                const nomeSchedaHeaderText = document.createTextNode(scheda.nome);
+                nomeSchedaHeader.appendChild(nomeSchedaHeaderText);
+                paginaAllenamenti(scheda);
+            })
+
+            bodyContainerSchede.appendChild(cardScheda);
+        }
+
+        // ---------------- FINE PAGINA SCHEDE ----------------
+
+
+        // ---------------- INIZIO PAGINA ALLENAMENTI ----------------
+
+        function paginaAllenamenti(scheda) {
+
+            // crea ed inserisce le parti iniziali della pagina degli allenamenti
+
+            window.scrollTo(0,0);
+
+            container.innerHTML = "";
+
+            const bodyGraphContainerAllenamenti = document.createElement("div");
+            bodyGraphContainerAllenamenti.classList.add("bodyGraphContainerAllenamenti");
+            container.appendChild(bodyGraphContainerAllenamenti);
+
+            const headerContainerAllenamenti = document.createElement("div");
+            headerContainerAllenamenti.classList.add("headerContainerAllenamenti");
+            container.appendChild(headerContainerAllenamenti);
+
+            const bodyContainerAllenamenti = document.createElement("div");
+            bodyContainerAllenamenti.classList.add("bodyContainerAllenamenti");
+            container.appendChild(bodyContainerAllenamenti);
+
+            scheda.gruppi.forEach((gruppo) => {
+                stampaGrafoAllenamenti(gruppo, scheda.allenamenti, bodyGraphContainerAllenamenti);
+            })
+
+            if(scheda.allenamenti.length < 1) {
+                stampaMessaggioNoData(bodyContainerAllenamenti);
+            }
+
+            const searchInputAllenamenti = document.createElement("input");
+            searchInputAllenamenti.classList.add("searchInput");
+            searchInputAllenamenti.setAttribute("placeholder", "search");
+            searchInputAllenamenti.addEventListener("input", () => {
+
+                bodyContainerAllenamenti.innerHTML = "";
+
+                const inputText = searchInputAllenamenti.value;
+
+                let varBool = false;
+
+                scheda.allenamenti.forEach((allenamento) => {
+                    if(inputText == "" || inputText == allenamento.id || inputText == allenamento.gruppo || inputText == allenamento.data) {
+
+                        // stampa le card degli allenamenti a seconda dell'input inserito
+
+                        stampaCardAllenamento(allenamento, bodyContainerAllenamenti);
+
+                        varBool = true;
+                    }
+                })
+
+                if(!varBool) {
+                    stampaMessaggioNoData(bodyContainerAllenamenti);
+                }
+            })
+
+            headerContainerAllenamenti.appendChild(searchInputAllenamenti);
+
+            scheda.allenamenti.forEach((allenamento) => {
+
+                // stampa tutte la card degli allenamenti alla creazione della pagina
+
+                stampaCardAllenamento(allenamento, bodyContainerAllenamenti);
+            })
+        }
+
+        function stampaGrafoAllenamenti(gruppo, allenamenti, bodyGraphContainerAllenamenti) {
+
+            // stampa il singolo grafo del gruppo
+
+            const cardGraph = document.createElement("div");
+            cardGraph.classList.add("cardGraph");
+            bodyGraphContainerAllenamenti.appendChild(cardGraph);
+
+            const titleCardGraph = document.createElement("h2");
+            titleCardGraph.classList.add("titleCardGraph");
+            const titleCardGraphText = document.createTextNode("Gruppo " + gruppo);
+            titleCardGraph.appendChild(titleCardGraphText);
+            cardGraph.appendChild(titleCardGraph);
+
+            const graphAllenamenti = document.createElement("div");
+            graphAllenamenti.classList.add("graphAllenamenti");
+            graphAllenamenti.style.height = "350px";
+            graphAllenamenti.style.width = "600px";
+            cardGraph.appendChild(graphAllenamenti);
+
+            let varBool = false;
+            allenamenti.forEach(allenamento => {
+                if(allenamento.gruppo == gruppo) {
+                    varBool = true;
+                }
+            })
+
+            if(!varBool) {
+                stampaMessaggioNoData(graphAllenamenti);
+            }
+
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            const listInit = [];
+            listInit.push("Day");
+
+            allenamenti.some(allenamento => {
+                if(allenamento.gruppo == gruppo) {
+
+                    let varBool = false;
+
+                    allenamento.esercizi.forEach((esercizio) => {
+                        listInit.push(esercizio.nome);
+                        varBool = true
+                    })
+                    
+                    return varBool
+                }
+            })
+
+            const insiemeDati = [];
+            insiemeDati.push(listInit);
+            allenamenti.forEach((allenamento) => {
+
+                if(allenamento.gruppo == gruppo) {
+                    const listaParziale = [];
+                    listaParziale.push(allenamento.data);
+
+                    allenamento.esercizi.forEach((esercizio) => {
+                        listaParziale.push(esercizio.peso);
+                    })
+
+                    insiemeDati.push(listaParziale);
+                }
+            })
+
+            console.log(insiemeDati);
+
+            function drawChart() {
+                
+                if(insiemeDati.length > 1) {
+                    var data = google.visualization.arrayToDataTable(insiemeDati);
+
+                    var options = {
+                        curveType: 'function',
+                        legend: { position: 'bottom' }
+                    };
+
+                    var chart = new google.visualization.LineChart(graphAllenamenti);
+
+                    chart.draw(data, options);
+                }
+            }
+        }
+
+        function stampaCardAllenamento(allenamento, bodyContainerAllenamenti) {
+
+            // stampa la singola card allenamento
+
+            const cardAllenamento = document.createElement("div");
+            cardAllenamento.classList.add("cardAllenamento");
+
+            const numeroAllenamento = document.createElement("h2");
+            numeroAllenamento.classList.add("numeroAllenamento");
+            const numeroAllenamentoText = document.createTextNode("No. " + allenamento.id);
+            numeroAllenamento.appendChild(numeroAllenamentoText);
+            cardAllenamento.appendChild(numeroAllenamento);
+
+            const gruppoAllenamento = document.createElement("h2");
+            gruppoAllenamento.classList.add("gruppoAllenamento");
+            const gruppoAllenamentoText = document.createTextNode("Gruppo " + allenamento.gruppo);
+            gruppoAllenamento.appendChild(gruppoAllenamentoText);
+            cardAllenamento.appendChild(gruppoAllenamento);
+
+            const dataAllenamento = document.createElement("h2");
+            dataAllenamento.classList.add("dataAllenamento");
+            const dataAllenamentoText = document.createTextNode(allenamento.data);
+            dataAllenamento.appendChild(dataAllenamentoText);
+            cardAllenamento.appendChild(dataAllenamento);
+
+            cardAllenamento.addEventListener("click", () => {
+                mostraModalAllenamento(allenamento);
+            })
+
+            bodyContainerAllenamenti.appendChild(cardAllenamento);
+        }
+
+        function mostraModalAllenamento(allenamento) {
+
+            // mostra a schermo il modal dell'allenamento cliccato
+
+            const modalAllenamento = document.createElement("div");
+            modalAllenamento.classList.add("modalAllenamento");
+            modalAllenamento.addEventListener("click", () => {
+                modalAllenamento.remove();
+            })
+
+            const modalContentAllenamento = document.createElement("div");
+            modalContentAllenamento.classList.add("modalContentAllenamento");
+            modalAllenamento.appendChild(modalContentAllenamento);
+
+            const descrizioneAllenamento = document.createElement("h2");
+            descrizioneAllenamento.classList.add("descrizioneAllenamento");
+            const descrizioneAllenamentoText = document.createTextNode("No. " + allenamento.id + " Gruppo " + allenamento.gruppo + " " + allenamento.data);
+            descrizioneAllenamento.appendChild(descrizioneAllenamentoText);
+            modalContentAllenamento.appendChild(descrizioneAllenamento);
+
+            const btnClose = document.createElement("button");
+            btnClose.classList.add("btnClose");
+            const btnCloseText = document.createTextNode("x");
+            btnClose.appendChild(btnCloseText);
+            modalContentAllenamento.appendChild(btnClose);
+            btnClose.addEventListener("click", () => {
+                modalAllenamento.remove();
+            })
+
+            allenamento.esercizi.forEach((esercizio) => {
+                const stampaEsercizio = document.createElement("h2");
+                stampaEsercizio.classList.add("stampaEsercizio");
+                const stampaEsercizioText = document.createTextNode(esercizio.nome + " " + esercizio.serie + "x" + esercizio.ripetizioni + " " + esercizio.peso + "kg");
+                stampaEsercizio.appendChild(stampaEsercizioText);
+                modalContentAllenamento.appendChild(stampaEsercizio);
+            })
+
+            const noteAllenamento = document.createElement("p");
+            noteAllenamento.classList.add("noteAllenamento");
+            const noteAllenamentoText = document.createTextNode(allenamento.note);
+            noteAllenamento.appendChild(noteAllenamentoText);
+            modalContentAllenamento.appendChild(noteAllenamento);
+
+            document.querySelector("body").appendChild(modalAllenamento);
+        }
+
+        // ---------------- FINE PAGINA ALLENAMENTI ----------------
+
+        function stampaMessaggioNoData(container) {
+            const noDataMessage = document.createElement("h1");
+            noDataMessage.classList.add("noDataMessage");
+            const noDataMessageText = document.createTextNode("No data available");
+            noDataMessage.appendChild(noDataMessageText);
+            container.appendChild(noDataMessage);
+        }
+
+    </script>
+</body>
+</html>

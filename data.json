@@ -1,0 +1,555 @@
+{
+    "schede": [
+        {
+            "id": 1,
+            "nome": "Main Workout",
+            "tipologia": "Bodybuilding",
+            "descrizione": "Scheda principale da bodybuilder da seguire per 4 settimane",
+            "dataInizio": "2023-03-26",
+            "dataFine": "2023-04-26",
+            "gruppi": ["A","B","C"],
+            "allenamenti": [
+                {
+                    "id": 1,
+                    "gruppo": "A",
+                    "data": "19/06/2023",
+                    "note": "primo allenamento",
+                    "esercizi": [
+                        {
+                            "id": 1,
+                            "muscolo": "Petto",
+                            "tipologia": "Forza Massimale",
+                            "nome": "Panca Piana Bilanciere",
+                            "serie": 3,
+                            "ripetizioni": 3,
+                            "peso": 75
+                        },
+                        {
+                            "id": 2,
+                            "muscolo": "Petto",
+                            "tipologia": "Forza",
+                            "nome": "Panca Piana Manubri",
+                            "serie": 3,
+                            "ripetizioni": 6,
+                            "peso": 25
+                        },
+                        {
+                            "id": 3,
+                            "muscolo": "Tricipiti",
+                            "tipologia": "Forza",
+                            "nome": "French Press Manubrio",
+                            "serie": 3,
+                            "ripetizioni": 6,
+                            "peso": 22.5
+                        },
+                        {
+                            "id": 4,
+                            "muscolo": "Petto",
+                            "tipologia": "Medio",
+                            "nome": "Chest Press 45°",
+                            "serie": 3,
+                            "ripetizioni": 9,
+                            "peso": 20
+                        },
+                        {
+                            "id": 5,
+                            "muscolo": "Tricipiti",
+                            "tipologia": "Medio",
+                            "nome": "Push Down",
+                            "serie": 3,
+                            "ripetizioni": 9,
+                            "peso": 30
+                        },
+                        {
+                            "id": 6,
+                            "muscolo": "Petto",
+                            "tipologia": "Resistenza",
+                            "nome": "Pectoral Machine",
+                            "serie": 3,
+                            "ripetizioni": 12,
+                            "peso": 30
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "gruppo": "B",
+                    "data": "20/06/2023",
+                    "note": "secondo allenamento",
+                    "esercizi": [
+                        {
+                            "id": 1,
+                            "muscolo": "Petto",
+                            "tipologia": "Forza Massimale",
+                            "nome": "Panca Piana Bilanciere",
+                            "serie": 3,
+                            "ripetizioni": 3,
+                            "peso": 75
+                        },
+                        {
+                            "id": 2,
+                            "muscolo": "Petto",
+                            "tipologia": "Forza",
+                            "nome": "Panca Piana Manubri",
+                            "serie": 3,
+                            "ripetizioni": 6,
+                            "peso": 25
+                        },
+                        {
+                            "id": 3,
+                            "muscolo": "Tricipiti",
+                            "tipologia": "Forza",
+                            "nome": "French Press Manubrio",
+                            "serie": 3,
+                            "ripetizioni": 6,
+                            "peso": 22.5
+                        },
+                        {
+                            "id": 4,
+                            "muscolo": "Petto",
+                            "tipologia": "Medio",
+                            "nome": "Chest Press 45°",
+                            "serie": 3,
+                            "ripetizioni": 9,
+                            "peso": 20
+                        },
+                        {
+                            "id": 5,
+                            "muscolo": "Tricipiti",
+                            "tipologia": "Medio",
+                            "nome": "Push Down",
+                            "serie": 3,
+                            "ripetizioni": 9,
+                            "peso": 30
+                        },
+                        {
+                            "id": 6,
+                            "muscolo": "Petto",
+                            "tipologia": "Resistenza",
+                            "nome": "Pectoral Machine",
+                            "serie": 3,
+                            "ripetizioni": 12,
+                            "peso": 30
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "gruppo": "C",
+                    "data": "21/06/2023",
+                    "note": "primo allenamento",
+                    "esercizi": [
+                        {
+                            "id": 1,
+                            "muscolo": "Petto",
+                            "tipologia": "Forza Massimale",
+                            "nome": "Panca Piana Bilanciere",
+                            "serie": 3,
+                            "ripetizioni": 3,
+                            "peso": 75
+                        },
+                        {
+                            "id": 2,
+                            "muscolo": "Petto",
+                            "tipologia": "Forza",
+                            "nome": "Panca Piana Manubri",
+                            "serie": 3,
+                            "ripetizioni": 6,
+                            "peso": 25
+                        },
+                        {
+                            "id": 3,
+                            "muscolo": "Tricipiti",
+                            "tipologia": "Forza",
+                            "nome": "French Press Manubrio",
+                            "serie": 3,
+                            "ripetizioni": 6,
+                            "peso": 22.5
+                        },
+                        {
+                            "id": 4,
+                            "muscolo": "Petto",
+                            "tipologia": "Medio",
+                            "nome": "Chest Press 45°",
+                            "serie": 3,
+                            "ripetizioni": 9,
+                            "peso": 20
+                        },
+                        {
+                            "id": 5,
+                            "muscolo": "Tricipiti",
+                            "tipologia": "Medio",
+                            "nome": "Push Down",
+                            "serie": 3,
+                            "ripetizioni": 9,
+                            "peso": 30
+                        },
+                        {
+                            "id": 6,
+                            "muscolo": "Petto",
+                            "tipologia": "Resistenza",
+                            "nome": "Pectoral Machine",
+                            "serie": 3,
+                            "ripetizioni": 12,
+                            "peso": 30
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "gruppo": "A",
+                    "data": "22/06/2023",
+                    "note": "primo allenamento",
+                    "esercizi": [
+                        {
+                            "id": 1,
+                            "muscolo": "Petto",
+                            "tipologia": "Forza Massimale",
+                            "nome": "Panca Piana Bilanciere",
+                            "serie": 3,
+                            "ripetizioni": 3,
+                            "peso": 75
+                        },
+                        {
+                            "id": 2,
+                            "muscolo": "Petto",
+                            "tipologia": "Forza",
+                            "nome": "Panca Piana Manubri",
+                            "serie": 3,
+                            "ripetizioni": 6,
+                            "peso": 25
+                        },
+                        {
+                            "id": 3,
+                            "muscolo": "Tricipiti",
+                            "tipologia": "Forza",
+                            "nome": "French Press Manubrio",
+                            "serie": 3,
+                            "ripetizioni": 6,
+                            "peso": 22.5
+                        },
+                        {
+                            "id": 4,
+                            "muscolo": "Petto",
+                            "tipologia": "Medio",
+                            "nome": "Chest Press 45°",
+                            "serie": 3,
+                            "ripetizioni": 9,
+                            "peso": 20
+                        },
+                        {
+                            "id": 5,
+                            "muscolo": "Tricipiti",
+                            "tipologia": "Medio",
+                            "nome": "Push Down",
+                            "serie": 3,
+                            "ripetizioni": 9,
+                            "peso": 30
+                        },
+                        {
+                            "id": 6,
+                            "muscolo": "Petto",
+                            "tipologia": "Resistenza",
+                            "nome": "Pectoral Machine",
+                            "serie": 3,
+                            "ripetizioni": 12,
+                            "peso": 30
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "nome": "Strength Workout",
+            "tipologia": "Powerlifting",
+            "descrizione": "Scheda da powerlifter confermata per il miglioramento tre massimali",
+            "dataInizio": "2023-04-27",
+            "dataFine": "2023-05-27",
+            "gruppi": ["A","B","C"],
+            "allenamenti": [
+                {
+                    "id": 1,
+                    "gruppo": "A",
+                    "data": "19/06/2023",
+                    "note": "primo allenamento",
+                    "esercizi": [
+                        {
+                            "id": 1,
+                            "muscolo": "Petto",
+                            "tipologia": "Forza Massimale",
+                            "nome": "Panca Piana Bilanciere",
+                            "serie": 3,
+                            "ripetizioni": 3,
+                            "peso": 75
+                        },
+                        {
+                            "id": 2,
+                            "muscolo": "Petto",
+                            "tipologia": "Forza",
+                            "nome": "Panca Piana Manubri",
+                            "serie": 3,
+                            "ripetizioni": 6,
+                            "peso": 25
+                        },
+                        {
+                            "id": 3,
+                            "muscolo": "Tricipiti",
+                            "tipologia": "Forza",
+                            "nome": "French Press Manubrio",
+                            "serie": 3,
+                            "ripetizioni": 6,
+                            "peso": 22.5
+                        },
+                        {
+                            "id": 4,
+                            "muscolo": "Petto",
+                            "tipologia": "Medio",
+                            "nome": "Chest Press 45°",
+                            "serie": 3,
+                            "ripetizioni": 9,
+                            "peso": 20
+                        },
+                        {
+                            "id": 5,
+                            "muscolo": "Tricipiti",
+                            "tipologia": "Medio",
+                            "nome": "Push Down",
+                            "serie": 3,
+                            "ripetizioni": 9,
+                            "peso": 30
+                        },
+                        {
+                            "id": 6,
+                            "muscolo": "Petto",
+                            "tipologia": "Resistenza",
+                            "nome": "Pectoral Machine",
+                            "serie": 3,
+                            "ripetizioni": 12,
+                            "peso": 30
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "nome": "Test Workout",
+            "tipologia": "Bodybuilding",
+            "descrizione": "Scheda in fase di test da aggiornare in questi giorni",
+            "dataInizio": "2023-05-28",
+            "dataFine": "2023-07-15",
+            "gruppi": ["A","B","C"],
+            "allenamenti": [
+                {
+                    "id": 1,
+                    "gruppo": "A",
+                    "data": "19/06/2023",
+                    "note": "primo allenamento",
+                    "esercizi": [
+                        {
+                            "id": 1,
+                            "muscolo": "Petto",
+                            "tipologia": "Forza Massimale",
+                            "nome": "Panca Piana Bilanciere",
+                            "serie": 3,
+                            "ripetizioni": 3,
+                            "peso": 75
+                        },
+                        {
+                            "id": 2,
+                            "muscolo": "Petto",
+                            "tipologia": "Forza",
+                            "nome": "Panca Piana Manubri",
+                            "serie": 3,
+                            "ripetizioni": 6,
+                            "peso": 25
+                        },
+                        {
+                            "id": 3,
+                            "muscolo": "Tricipiti",
+                            "tipologia": "Forza",
+                            "nome": "French Press Manubrio",
+                            "serie": 3,
+                            "ripetizioni": 6,
+                            "peso": 22.5
+                        },
+                        {
+                            "id": 4,
+                            "muscolo": "Petto",
+                            "tipologia": "Medio",
+                            "nome": "Chest Press 45°",
+                            "serie": 3,
+                            "ripetizioni": 9,
+                            "peso": 20
+                        },
+                        {
+                            "id": 5,
+                            "muscolo": "Tricipiti",
+                            "tipologia": "Medio",
+                            "nome": "Push Down",
+                            "serie": 3,
+                            "ripetizioni": 9,
+                            "peso": 30
+                        },
+                        {
+                            "id": 6,
+                            "muscolo": "Petto",
+                            "tipologia": "Resistenza",
+                            "nome": "Pectoral Machine",
+                            "serie": 3,
+                            "ripetizioni": 12,
+                            "peso": 30
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "nome": "Test Workout 2",
+            "tipologia": "Bodybuilding",
+            "descrizione": "Scheda in fase di test da aggiornare in questi giorni",
+            "dataInizio": "2023-05-28",
+            "dataFine": "2023-07-15",
+            "gruppi": ["A","B","C"],
+            "allenamenti": [
+                {
+                    "id": 1,
+                    "gruppo": "A",
+                    "data": "19/06/2023",
+                    "note": "primo allenamento",
+                    "esercizi": [
+                        {
+                            "id": 1,
+                            "muscolo": "Petto",
+                            "tipologia": "Forza Massimale",
+                            "nome": "Panca Piana Bilanciere",
+                            "serie": 3,
+                            "ripetizioni": 3,
+                            "peso": 75
+                        },
+                        {
+                            "id": 2,
+                            "muscolo": "Petto",
+                            "tipologia": "Forza",
+                            "nome": "Panca Piana Manubri",
+                            "serie": 3,
+                            "ripetizioni": 6,
+                            "peso": 25
+                        },
+                        {
+                            "id": 3,
+                            "muscolo": "Tricipiti",
+                            "tipologia": "Forza",
+                            "nome": "French Press Manubrio",
+                            "serie": 3,
+                            "ripetizioni": 6,
+                            "peso": 22.5
+                        },
+                        {
+                            "id": 4,
+                            "muscolo": "Petto",
+                            "tipologia": "Medio",
+                            "nome": "Chest Press 45°",
+                            "serie": 3,
+                            "ripetizioni": 9,
+                            "peso": 20
+                        },
+                        {
+                            "id": 5,
+                            "muscolo": "Tricipiti",
+                            "tipologia": "Medio",
+                            "nome": "Push Down",
+                            "serie": 3,
+                            "ripetizioni": 9,
+                            "peso": 30
+                        },
+                        {
+                            "id": 6,
+                            "muscolo": "Petto",
+                            "tipologia": "Resistenza",
+                            "nome": "Pectoral Machine",
+                            "serie": 3,
+                            "ripetizioni": 12,
+                            "peso": 30
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "nome": "Test Workout 3",
+            "tipologia": "Bodybuilding",
+            "descrizione": "Scheda in fase di test da aggiornare in questi giorni",
+            "dataInizio": "2023-05-28",
+            "dataFine": "2023-07-15",
+            "gruppi": ["A","B","C"],
+            "allenamenti": [
+                {
+                    "id": 1,
+                    "gruppo": "A",
+                    "data": "19/06/2023",
+                    "note": "primo allenamento",
+                    "esercizi": [
+                        {
+                            "id": 1,
+                            "muscolo": "Petto",
+                            "tipologia": "Forza Massimale",
+                            "nome": "Panca Piana Bilanciere",
+                            "serie": 3,
+                            "ripetizioni": 3,
+                            "peso": 75
+                        },
+                        {
+                            "id": 2,
+                            "muscolo": "Petto",
+                            "tipologia": "Forza",
+                            "nome": "Panca Piana Manubri",
+                            "serie": 3,
+                            "ripetizioni": 6,
+                            "peso": 25
+                        },
+                        {
+                            "id": 3,
+                            "muscolo": "Tricipiti",
+                            "tipologia": "Forza",
+                            "nome": "French Press Manubrio",
+                            "serie": 3,
+                            "ripetizioni": 6,
+                            "peso": 22.5
+                        },
+                        {
+                            "id": 4,
+                            "muscolo": "Petto",
+                            "tipologia": "Medio",
+                            "nome": "Chest Press 45°",
+                            "serie": 3,
+                            "ripetizioni": 9,
+                            "peso": 20
+                        },
+                        {
+                            "id": 5,
+                            "muscolo": "Tricipiti",
+                            "tipologia": "Medio",
+                            "nome": "Push Down",
+                            "serie": 3,
+                            "ripetizioni": 9,
+                            "peso": 30
+                        },
+                        {
+                            "id": 6,
+                            "muscolo": "Petto",
+                            "tipologia": "Resistenza",
+                            "nome": "Pectoral Machine",
+                            "serie": 3,
+                            "ripetizioni": 12,
+                            "peso": 30
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
